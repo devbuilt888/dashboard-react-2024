@@ -32,20 +32,20 @@ html{
 }
 .widgetWrapper{
   background-color: blueviolet;
-  height:25%;
+  height:50vh;
 }
 
 .chartWrapper{
   background-color:red;
-  height:25%;
+  height:60%;
 }
 
 .footer{
   background-color: blue;
-  height:25%;
+  height:5%;
 }
 
 .header{
   background-color:orange;
-  height:25%;
+  height:5%;
 }
