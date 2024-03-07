@@ -1,6 +1,6 @@
 import react from 'react';
 
-const Widget = ({color})=>{
+const Widget = ({color, textToDisplay, count})=>{
 
     //array destructuring
     // const array1 = [1, 2, 3];
@@ -10,12 +10,16 @@ const Widget = ({color})=>{
     // const object = { orange: 'orange', mango:'mango', apple:'apple'};
     // const {orange, , apple};
     //leave blank space between commas to skip one key from object to be destructured
-    
+
 
     const widgetStyles = {
         background: color
     }
-return <section className="widget" style={widgetStyles}>Widget</section>
+return <section className="widget" style={widgetStyles}><i className="fa-solid fa-bucket"/>
+{textToDisplay}
+<br />
+{count}
+</section>
 }
 
 export default Widget;
