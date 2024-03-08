@@ -13,6 +13,7 @@ const WidgetWrapper = () => {
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -31,21 +32,42 @@ const WidgetWrapper = () => {
     getUsers();
   }, []);
 
-  const countObjectProps = (obj) => {
-    return Object.keys(obj);
-  };
+  // const countObjectProps = (obj) => {
+  //   return Object.keys(obj);
+  // };
+
+  const getCategories = () => {
+    //storing an arr of categories with repeated values into a set,
+    // will reduce the arr into an object of non-duplicate categories
+    let categoriesSet = new Set([]);
+
+    //map can run a function for each item,
+    //in this case just add the category of each item
+    //into the set categoriesSet to eliminate duplicates
+    products.map((item) => categoriesSet.add(item.category));
+
+    //is there a way to set categories without infinite re-rendering?
+    //how to include this code on useEffect?
+    //how to avoid unnecesary rendering
+    //how to avoid having to run getCategories over and over
+
+    console.log(categoriesSet);
+
+    return categoriesSet;
+  }; 
+
 
   const usersAgeCheck = () => {
     const arrayUnder25 = users.filter((item) => item.age > 25);
-console.log(arrayUnder25);
-    if (arrayUnder25.length > 100) {
+    console.log(arrayUnder25);
+    if (arrayUnder25.length > 10) {
       return true;
     } else {
       return false;
     }
   };
 
-//new goals, make 
+  //new goals, make
 
   //users under 25 get counted
   //if this number is under 10 return false, else return true
@@ -68,8 +90,17 @@ console.log(arrayUnder25);
           count={users.length}
         />
       )}
-      <Widget key="3" color="rgb(200, 100, 100)" textToDisplay="" count="" />
-      <Widget key="4" color="yellow" textToDisplay="" count="" />
+
+      {getCategories() && (
+        <Widget
+          key="3"
+          color="rgb(200, 100, 100)"
+          textToDisplay=""
+          count={getCategories}
+        />
+      )}
+
+      <Widget key="4" color="yellow" textToDisplay="" count={getCategories().size} />
     </nav>
   );
 };
