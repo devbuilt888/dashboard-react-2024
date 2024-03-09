@@ -30,36 +30,100 @@ const WidgetWrapper = () => {
 
     getProducts();
     getUsers();
+    getCategories2();
   }, []);
 
+  // GET CATEGORIES
 
-  //homework
-  
-  // const countObjectProps = (obj) => {
-  //   return Object.keys(obj);
+  // const getCategories = () => {
+
+  //storing an arr of categories with repeated values into a set,
+  // will reduce the arr into an object of non-duplicate categories
+
+  // let categoriesSet = new Set([]);
+
+  //map can run a function for each item,
+  //in this case just add the category of each item
+  //into the set categoriesSet to eliminate duplicates
+
+  // products.map((item) => categoriesSet.add(item.category));
+
+  //is there a way to set categories without infinite re-rendering?
+  //how to include this code on useEffect?
+  //how to avoid unnecesary rendering
+  //how to avoid having to run getCategories over and over
+
+  // console.log(categoriesSet);
+
+  // return categoriesSet;
   // };
 
-  const getCategories = () => {
-    //storing an arr of categories with repeated values into a set,
-    // will reduce the arr into an object of non-duplicate categories
-    let categoriesSet = new Set([]);
-
-    //map can run a function for each item,
-    //in this case just add the category of each item
-    //into the set categoriesSet to eliminate duplicates
-    products.map((item) => categoriesSet.add(item.category));
-
-    //is there a way to set categories without infinite re-rendering?
-    //how to include this code on useEffect?
-    //how to avoid unnecesary rendering
-    //how to avoid having to run getCategories over and over
-
-    console.log(categoriesSet);
-
-    return categoriesSet;
-  }; 
 
 
+
+
+
+
+  //GET CATEGORIES, FOR LOOP SOLUTION WITH AN OBJECT
+
+  const getCategories2 = () => {
+    //create empty object
+    let categoriesObj = {};
+
+    //loop all products and get each products category
+    //products is an array of objects, so can be looped
+
+    for (let i = 0; i < products.length; i++) {
+      //object.keys returns and array of all of an object's keys
+      //if we pass that object as an argument
+      //so we store this array returned, in a variable
+      let categoriesObjKeys = Object.keys(categoriesObj);
+
+      //use findIndex method to compare all the keys inside of the
+      //categoriesObjKeys object, if the category already exists inside
+      //of that object, the findIndex method should return that element
+      //if not, then findIndex would return -1
+      //so we store this value in a variable
+      let findCategory = categoriesObjKeys.findIndex(
+        (item) => item === products[i].category
+      );
+
+      //then we use a conditional to check if findIndex returned -1
+      //for current category, if so, add current category to object
+      //as a key value pair
+      if (findCategory === -1) {
+        categoriesObj[products[i].category] = products[i].category;
+        // console.log(products[i].category);
+      }
+      //else do nothing
+      // else {
+      //   console.log("that products is repeated");
+      // }
+    }
+    console.log(categoriesObj);
+    return categoriesObj;
+
+
+    //GOALS:
+
+    //1. loop all products and get each products category
+
+    //2. on each iteration of each product, compare category with content
+    //inside of object
+
+    //3. if the product is already in the object, then do nothing and continue
+    //looping, and if the product is not in the object, add it to the object
+    //and continue looping
+  };
+
+
+
+
+
+
+
+
+  //USERS AGE CHECK
   const usersAgeCheck = () => {
     const arrayUnder25 = users.filter((item) => item.age > 25);
     console.log(arrayUnder25);
@@ -94,12 +158,14 @@ const WidgetWrapper = () => {
         />
       )}
 
-      {getCategories() && (
+      {/* {getCategories() && ( */}
+      {getCategories2() && (
         <Widget
           key="3"
           color="#378839"
           textToDisplay="Categories"
-          count={getCategories().size}
+          count={Object.keys(getCategories2()).length}
+          // count={getCategories().size}
         />
       )}
 
