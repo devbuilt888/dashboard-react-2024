@@ -32,6 +32,9 @@ const WidgetWrapper = () => {
     getUsers();
   }, []);
 
+
+  //homework
+  
   // const countObjectProps = (obj) => {
   //   return Object.keys(obj);
   // };
@@ -77,16 +80,16 @@ const WidgetWrapper = () => {
       {/* {getWidget()} */}
       <Widget
         key="1"
-        color="green"
-        textToDisplay="products"
+        color="#2E6DFF"
+        textToDisplay="Products"
         count={products.length}
       />
 
       {usersAgeCheck() && (
         <Widget
           key="2"
-          color="#00f"
-          textToDisplay="users"
+          color="#FF7A00"
+          textToDisplay="Users"
           count={users.length}
         />
       )}
@@ -94,13 +97,13 @@ const WidgetWrapper = () => {
       {getCategories() && (
         <Widget
           key="3"
-          color="rgb(200, 100, 100)"
-          textToDisplay=""
-          count={getCategories}
+          color="#378839"
+          textToDisplay="Categories"
+          count={getCategories().size}
         />
       )}
 
-      <Widget key="4" color="yellow" textToDisplay="" count={getCategories().size} />
+      <Widget key="4" color="yellow" textToDisplay="Alerts" count="" />
     </nav>
   );
 };
