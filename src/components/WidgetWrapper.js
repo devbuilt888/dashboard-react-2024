@@ -13,19 +13,19 @@ const WidgetWrapper = () => {
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       const productsArr = await axios.get("https://dummyjson.com/products");
       setProducts(productsArr.data.products);
-      console.log(productsArr.data);
+      // console.log(productsArr.data);
     };
 
     const getUsers = async () => {
       const usersArr = await axios.get("https://dummyjson.com/users");
       setUsers(usersArr.data.users);
-      console.log(usersArr.data);
+      // console.log(usersArr.data);
     };
 
     getProducts();
@@ -100,7 +100,7 @@ const WidgetWrapper = () => {
       //   console.log("that products is repeated");
       // }
     }
-    console.log(categoriesObj);
+    // console.log(categoriesObj);
     return categoriesObj;
 
 
@@ -126,7 +126,7 @@ const WidgetWrapper = () => {
   //USERS AGE CHECK
   const usersAgeCheck = () => {
     const arrayUnder25 = users.filter((item) => item.age > 25);
-    console.log(arrayUnder25);
+    // console.log(arrayUnder25);
     if (arrayUnder25.length > 10) {
       return true;
     } else {

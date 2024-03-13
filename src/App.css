@@ -52,3 +52,12 @@ html{
   background-color:#2A374D;
   height:5%;
 }
+
+
+tr{
+  border:solid 1px #000;
+}
+td{
+  border:solid 1px #000;
+
+}
