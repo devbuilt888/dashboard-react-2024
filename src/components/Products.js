@@ -1,40 +1,17 @@
 import react, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from './Header';
-import Footer from './Footer';
-import DataTable from 'react-data-table-component';
-
+import Header from "./Header";
+import Footer from "./Footer";
+import DataTable from "react-data-table-component";
+import ProductsHtmlTable from "./ProductsHtmlTable";
+import ProductsDataTable from "./ProductsDataTable";
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
-  const columns = [
-    {
-		name: 'id',
-		selector: row => row.id,
-        sortable: true
-	},
-	{
-		name: 'Title',
-		selector: row => row.title,
-        sortable: true
-	},
-	{
-		name: 'Category',
-		selector: row => row.category,
-        sortable: true
-	},
-    {
-		name: 'Price',
-		selector: row => row.price,
-        sortable: true
-	},
-    {
-		name: 'Stars',
-		selector: row => row.rating,
-        sortable: true
-	}
-];
+  let isHtmlTable = false;
+
   useEffect(() => {
+    //Fetching is always an expensive process
     const fetchProducts = async () => {
       const products = await axios.get("https://dummyjson.com/products");
 
@@ -48,32 +25,21 @@ const Products = () => {
     <>
       <Header />
       <h2>Products HTML Table</h2>
-      <table>
-        <tr>
-            <td>Id</td>
-            <td>Product</td>
-            <td>Category</td>
-            <td>Price</td>
-        </tr>
-        {productsData.map((item, index) => {
-            return <tr>
-                <td>{index}</td>
-                <td>{item.title}</td>
-                <td>{item.category}</td>
-                <td>{item.price}</td>
+      {isHtmlTable ? (
+        <ProductsHtmlTable productsData={productsData} />
+      ) : (
+        <ProductsDataTable productsData={productsData} />
+      )}
 
-            </tr>
-        })}
-      </table>
       <h2>Products React Data Components Table</h2>
-
-      <DataTable
-			columns={columns}
-			data={productsData}
-		/>
+      {!isHtmlTable && <ProductsDataTable productsData={productsData} />}
       <Footer />
     </>
   );
 };
 
 export default Products;
+
+
+//learn about localstorage cookies and why we have to use JSON.parse / JSON.stringify
+//store in browser variables like if we clicked on a pop up in the website

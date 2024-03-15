@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
 import axios from "axios";
 import Widget from "./Widget";
+import ProductsHtmlTable from "./ProductsHtmlTable";
 
 const WidgetWrapper = () => {
   //   let getWidget = () => {
@@ -58,12 +59,6 @@ const WidgetWrapper = () => {
   // return categoriesSet;
   // };
 
-
-
-
-
-
-
   //GET CATEGORIES, FOR LOOP SOLUTION WITH AN OBJECT
 
   const getCategories2 = () => {
@@ -103,7 +98,6 @@ const WidgetWrapper = () => {
     // console.log(categoriesObj);
     return categoriesObj;
 
-
     //GOALS:
 
     //1. loop all products and get each products category
@@ -115,13 +109,6 @@ const WidgetWrapper = () => {
     //looping, and if the product is not in the object, add it to the object
     //and continue looping
   };
-
-
-
-
-
-
-
 
   //USERS AGE CHECK
   const usersAgeCheck = () => {
@@ -147,6 +134,7 @@ const WidgetWrapper = () => {
         color="#2E6DFF"
         textToDisplay="Products"
         count={products.length}
+        link="/products"
       />
 
       {usersAgeCheck() && (
@@ -155,6 +143,7 @@ const WidgetWrapper = () => {
           color="#FF7A00"
           textToDisplay="Users"
           count={users.length}
+          link="/products"
         />
       )}
 
@@ -165,11 +154,21 @@ const WidgetWrapper = () => {
           color="#378839"
           textToDisplay="Categories"
           count={Object.keys(getCategories2()).length}
+          link="/categories"
+
           // count={getCategories().size}
         />
       )}
 
-      <Widget key="4" color="yellow" textToDisplay="Alerts" count="" />
+      <Widget
+        key="4"
+        color="yellow"
+        textToDisplay="Alerts"
+        count=""
+        link="/alerts"
+      />
+      <br />
+      <ProductsHtmlTable productsData={products} />
     </nav>
   );
 };

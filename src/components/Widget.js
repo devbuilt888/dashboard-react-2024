@@ -1,25 +1,26 @@
-import react from 'react';
+import react from "react";
+import { Link } from "react-router-dom";
 
-const Widget = ({color, textToDisplay, count})=>{
+const Widget = ({ color, textToDisplay, count, link }) => {
+  //array destructuring
+  // const array1 = [1, 2, 3];
+  // const [one, two] = array1; (only 1 and 2 will be assigned to one and two respectively)
 
-    //array destructuring
-    // const array1 = [1, 2, 3];
-    // const [one, two] = array1; (only 1 and 2 will be assigned to one and two respectively)
+  // const object = { orange: 'orange', mango:'mango', apple:'apple'};
+  // const {orange, , apple};
+  //leave blank space between commas to skip one key from object to be destructured
 
-
-    // const object = { orange: 'orange', mango:'mango', apple:'apple'};
-    // const {orange, , apple};
-    //leave blank space between commas to skip one key from object to be destructured
-
-
-    const widgetStyles = {
-        background: color
-    }
-return <section className="widget" style={widgetStyles}><i className="fa-solid fa-bucket"/>
-{textToDisplay}
-<br />
-{count}
-</section>
-}
+  const widgetStyles = {
+    background: color,
+  };
+  return (
+    <section className="widget" style={widgetStyles}>
+      <i className="fa-solid fa-bucket" />
+      <Link to={link}>{textToDisplay}</Link>
+      <br />
+      {count}
+    </section>
+  );
+};
 
 export default Widget;
