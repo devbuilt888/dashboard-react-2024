@@ -1,7 +1,8 @@
 import react, { useEffect, useState } from "react";
 import axios from "axios";
-import Widget from "./Widget";
-import ProductsHtmlTable from "./ProductsHtmlTable";
+import Widget from "../Widget";
+import ProductsHtmlTable from "../ProductsHtmlTable";
+import {StyledWidgetWrapper} from './WidgetWrapper.styled';
 
 const WidgetWrapper = () => {
   //   let getWidget = () => {
@@ -127,7 +128,7 @@ const WidgetWrapper = () => {
   //if this number is under 10 return false, else return true
 
   return (
-    <nav className="widgetWrapper widgetGridContainer">
+    <StyledWidgetWrapper>
       {/* {getWidget()} */}
       <Widget
         key="1"
@@ -169,7 +170,7 @@ const WidgetWrapper = () => {
       />
       <br />
       <ProductsHtmlTable productsData={products} />
-    </nav>
+    </StyledWidgetWrapper>
   );
 };
 

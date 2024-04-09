@@ -1,6 +1,5 @@
 import react from "react";
 import DataTable from "react-data-table-component";
-
 const ProductsDataTable = ({ productsData }) => {
   const columns = [
     {

@@ -1,6 +1,7 @@
 import react from "react";
+import { Link } from "react-router-dom";
 
-const ProductsHtmlTable = ({productsData}) => {
+const ProductsHtmlTable = ({ productsData }) => {
   return (
     <table>
       <tr>
@@ -13,7 +14,10 @@ const ProductsHtmlTable = ({productsData}) => {
         return (
           <tr>
             <td>{index}</td>
-            <td>{item.title}</td>
+
+            <td>
+              <Link to={`/products/${item.id}`}>{item.title}</Link>
+            </td>
             <td>{item.category}</td>
             <td>{item.price}</td>
           </tr>

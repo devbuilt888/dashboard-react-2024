@@ -19,39 +19,11 @@ html{
 
 }
 
-.widgetGridContainer{
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
 
-.widget{
-  height:50%;
-  width:20vw;
-  background-color:cyan;
 
-  margin:2%;
-  border-radius:3px;
-}
-.widgetWrapper{
-  background-color: #1E2C3A;
-  height:50vh;
-}
 
-.chartWrapper{
-  background-color:#1E2C3A;
-  height:60%;
-}
 
-.footer{
-  background-color: #2A374D;
-  height:5%;
-}
 
-.header{
-  background-color:#2A374D;
-  height:5%;
-}
 
 
 tr{
