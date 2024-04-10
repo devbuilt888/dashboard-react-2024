@@ -8,26 +8,36 @@ import ProductsHtmlTable from "../ProductsHtmlTable";
 import ProductsDataTable from "../ProductsDataTable";
 import { StyledTitleProducts } from "./Products.styled";
 import { useNavigate } from "react-router-dom";
-import SearchSuggestions from './SearchSuggestions';
+import SearchSuggestions from "./SearchSuggestions";
+import Pagination from "../Pagination";
+import loader from "../../Assets/loader001.gif";
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
   const [suggestionList, setSuggestionList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
-
-  let isHtmlTable = true;
+  const [currentPagination, setCurrentPagination] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [productsLoading, setProductsLoading] = useState(false);
 
   useEffect(() => {
     //Fetching is always an expensive process
     const fetchProducts = async () => {
-      const products = await axios.get("https://dummyjson.com/products");
+      setProductsLoading(true);
+      const products = await axios.get(
+        `https://dummyjson.com/products?skip=${currentPagination * 30}`
+      );
 
       const productsData = products.data.products;
+      const totalProductsData = products.data.total;
+      
       setProductsData(productsData);
+      setTotalProducts(totalProductsData);
       console.log(productsData);
+      setProductsLoading(false);
     };
     fetchProducts();
-  }, []);
+  }, [currentPagination]);
 
   return (
     <>
@@ -38,19 +48,24 @@ const Products = () => {
         setSuggestionList={setSuggestionList}
       />
       {console.log(suggestionList)}
+
       {!!suggestionList.length && (
         <SearchSuggestions suggestionList={suggestionList} />
-      )}{" "}
+      )}
       <StyledTitleProducts>Products HTML Table</StyledTitleProducts>
-      {isHtmlTable ? (
+      {!productsLoading ? (
         <ProductsHtmlTable productsData={productsData} />
       ) : (
-        <ProductsDataTable productsData={productsData} />
+        <img src={loader}></img>
       )}
+      <Pagination
+        totalProducts={totalProducts}
+        setCurrentPagination={setCurrentPagination}
+      />
       <StyledTitleProducts>
         Products React Data Components Table
       </StyledTitleProducts>
-      {isHtmlTable && <ProductsDataTable productsData={productsData} />}
+      {!productsLoading && <ProductsDataTable productsData={productsData} />}
       <Footer />
     </>
   );

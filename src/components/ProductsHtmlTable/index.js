@@ -13,7 +13,8 @@ const ProductsHtmlTable = ({ productsData }) => {
       {productsData.map((item, index) => {
         return (
           <tr>
-            <td>{index}</td>
+            {/* index applies to the current item on the map, not the index from api "item.id" */}
+            <td>{item.id}</td>
 
             <td>
               <Link to={`/products/${item.id}`}>{item.title}</Link>

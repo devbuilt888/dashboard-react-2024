@@ -1,7 +1,11 @@
 import react, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ productsData, setErrorMsg, setSuggestionList }) => {
+const SearchBar = ({ 
+  productsData, 
+  setErrorMsg, 
+  setSuggestionList 
+}) => {
   const [userSearchInput, setUserSearchInput] = useState("");
 
   const navigate = useNavigate();
