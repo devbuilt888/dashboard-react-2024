@@ -6,11 +6,12 @@ import SearchBar from "./SearchBar";
 import DataTable from "react-data-table-component";
 import ProductsHtmlTable from "../ProductsHtmlTable";
 import ProductsDataTable from "../ProductsDataTable";
-import { StyledTitleProducts } from "./Products.styled";
+import { StyledTitleProducts, StyledCardContainer } from "./Products.styled";
 import { useNavigate } from "react-router-dom";
 import SearchSuggestions from "./SearchSuggestions";
 import Pagination from "../Pagination";
 import loader from "../../Assets/loader001.gif";
+import ProductCard from "../ProductCard";
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
@@ -20,6 +21,11 @@ const Products = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsLoading, setProductsLoading] = useState(false);
 
+  // create getter and setter methods for setting and getting data from localstorage
+  // conditional that checks if data exists on localstorage if not then pull api
+
+  //save key at localstorage as ?skip=?${currentPagination * 30} from api
+  //save value at localstg as
   useEffect(() => {
     //Fetching is always an expensive process
     const fetchProducts = async () => {
@@ -30,13 +36,35 @@ const Products = () => {
 
       const productsData = products.data.products;
       const totalProductsData = products.data.total;
-      
-      setProductsData(productsData);
+
+      setProductsData(products.data);
       setTotalProducts(totalProductsData);
+
+      setLocalData(`?skip=${currentPagination}`, JSON.stringify(productsData));
       console.log(productsData);
       setProductsLoading(false);
     };
-    fetchProducts();
+
+    const getLocalData = (key) => {
+      return localStorage.getItem(key);
+    };
+
+    const setLocalData = (key, value) => {
+      localStorage.setItem(key, value);
+    };
+
+    const hasLocalData = getLocalData(`?skip=${currentPagination}`);
+
+    if (hasLocalData) {
+      console.log(hasLocalData);
+      setProductsData(JSON.parse(hasLocalData));
+
+      //FIX THIS !!!!!!
+      setTotalProducts(100);
+      // !!!
+    } else {
+      fetchProducts();
+    }
   }, [currentPagination]);
 
   return (
@@ -52,6 +80,11 @@ const Products = () => {
       {!!suggestionList.length && (
         <SearchSuggestions suggestionList={suggestionList} />
       )}
+      <StyledCardContainer>
+        {productsData.map((item) => {
+          return <ProductCard item={item} />;
+        })}
+      </StyledCardContainer>
       <StyledTitleProducts>Products HTML Table</StyledTitleProducts>
       {!productsLoading ? (
         <ProductsHtmlTable productsData={productsData} />
