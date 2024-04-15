@@ -37,7 +37,7 @@ const Products = () => {
       const productsData = products.data.products;
       const totalProductsData = products.data.total;
 
-      setProductsData(products.data);
+      setProductsData(productsData);
       setTotalProducts(totalProductsData);
 
       setLocalData(`?skip=${currentPagination}`, JSON.stringify(productsData));
@@ -60,6 +60,7 @@ const Products = () => {
       setProductsData(JSON.parse(hasLocalData));
 
       //FIX THIS !!!!!!
+      //total products should come from the api
       setTotalProducts(100);
       // !!!
     } else {
