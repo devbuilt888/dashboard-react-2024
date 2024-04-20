@@ -1,11 +1,8 @@
 import react, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StyledSearchInput } from "./SearchBar.styled";
 
-const SearchBar = ({ 
-  productsData, 
-  setErrorMsg, 
-  setSuggestionList 
-}) => {
+const SearchBar = ({ productsData, setErrorMsg, setSuggestionList }) => {
   const [userSearchInput, setUserSearchInput] = useState("");
 
   const navigate = useNavigate();
@@ -45,12 +42,12 @@ const SearchBar = ({
   };
   return (
     <>
-      <input
+      <StyledSearchInput
         type="text"
         placeholder="set product name"
         onChange={handleInputChange}
         value={userSearchInput}
-      ></input>
+      ></StyledSearchInput>
 
       <button type="button" onClick={handleProductSearch}>
         Search

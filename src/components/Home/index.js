@@ -4,10 +4,10 @@ import WidgetWrapper from "../WidgetWrapper";
 import ChartWrapper from "../ChartWrapper";
 import Footer from "../Footer";
 
-const Home = () => {
+const Home = ({ isDarkMode, toggleDarkMode }) => {
   return (
-    <div className="App">
-      <Header />
+    <div>
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <WidgetWrapper />
       <ChartWrapper />
       <Footer />

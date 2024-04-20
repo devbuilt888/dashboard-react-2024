@@ -13,7 +13,7 @@ import Pagination from "../Pagination";
 import loader from "../../Assets/loader001.gif";
 import ProductCard from "../ProductCard";
 
-const Products = () => {
+const Products = ({ isDarkMode, toggleDarkMode }) => {
   const [productsData, setProductsData] = useState([]);
   const [suggestionList, setSuggestionList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
@@ -70,7 +70,7 @@ const Products = () => {
 
   return (
     <>
-      <Header />
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <SearchBar
         productsData={productsData}
         setErrorMsg={setErrorMsg}
@@ -81,21 +81,25 @@ const Products = () => {
       {!!suggestionList.length && (
         <SearchSuggestions suggestionList={suggestionList} />
       )}
+      <Pagination
+        totalProducts={totalProducts}
+        setCurrentPagination={setCurrentPagination}
+      />
       <StyledCardContainer>
         {productsData.map((item) => {
           return <ProductCard item={item} />;
         })}
       </StyledCardContainer>
+      <Pagination
+        totalProducts={totalProducts}
+        setCurrentPagination={setCurrentPagination}
+      />
       <StyledTitleProducts>Products HTML Table</StyledTitleProducts>
       {!productsLoading ? (
         <ProductsHtmlTable productsData={productsData} />
       ) : (
         <img src={loader}></img>
       )}
-      <Pagination
-        totalProducts={totalProducts}
-        setCurrentPagination={setCurrentPagination}
-      />
       <StyledTitleProducts>
         Products React Data Components Table
       </StyledTitleProducts>

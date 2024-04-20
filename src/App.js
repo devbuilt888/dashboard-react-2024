@@ -1,3 +1,4 @@
+import react, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import ChartWrapper from "./components/ChartWrapper";
@@ -12,10 +13,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevState) => !prevState);
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />,
       errorElement: <ErrorPage />,
     },
     {
@@ -24,11 +35,13 @@ function App() {
     },
     {
       path: "/products",
-      element: <Products />,
+      element: (
+        <Products isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      ),
     },
     {
       path: "/products/:id",
-      element: <Product />,
+      element: <Product isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />,
     },
     //dynamic api routing:
     //1 create path in router with dynamic syntax
@@ -38,7 +51,11 @@ function App() {
     //3 fetch product.id  from api json
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className={`App`}>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

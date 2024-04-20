@@ -10,5 +10,5 @@ color: #fff;`;
 export const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin: 10% 20%;
+  margin: 3% 20%;
 `;

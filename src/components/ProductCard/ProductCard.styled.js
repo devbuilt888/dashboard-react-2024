@@ -8,9 +8,16 @@ export const CardWrapper = styled.div`
   align-items: center;
   margin: 1% 0;
   border-radius: 2%;
+  background: var(--bg-color-secondary);
 `;
 
 export const CardImage = styled.img`
-  width: 90%;
-  max-width: 100px;
+  max-width: 100%;
+  max-height: 150px;
+`;
+
+export const ImgWrapper = styled.div`
+  background: white;
+  min-width: 100%;
+  text-align: center;
 `;
