@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import ChartWrapper from "./components/ChartWrapper";
@@ -11,6 +11,8 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
+
+export const ThemeContext = createContext();
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -26,7 +28,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />,
+      element: <Home />,
       errorElement: <ErrorPage />,
     },
     {
@@ -35,13 +37,11 @@ function App() {
     },
     {
       path: "/products",
-      element: (
-        <Products isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      ),
+      element: <Products />,
     },
     {
       path: "/products/:id",
-      element: <Product isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />,
+      element: <Product />,
     },
     //dynamic api routing:
     //1 create path in router with dynamic syntax
@@ -53,7 +53,11 @@ function App() {
 
   return (
     <div className={`App`}>
-      <RouterProvider router={router} />
+      <ThemeContext.Provider
+        value={{ isDarkMode: isDarkMode, toggleDarkMode: toggleDarkMode}}
+      >
+        <RouterProvider router={router} />
+      </ThemeContext.Provider>
     </div>
   );
 }

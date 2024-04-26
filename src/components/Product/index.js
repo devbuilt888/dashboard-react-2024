@@ -12,7 +12,7 @@ import {
   StyledStockCard,
 } from "./Product.style";
 import Rating from "../Rating";
-const Product = ({ isDarkMode, toggleDarkMode }) => {
+const Product = () => {
   const [productItem, setProductItem] = useState({});
   const { id } = useParams();
 
@@ -29,7 +29,7 @@ const Product = ({ isDarkMode, toggleDarkMode }) => {
     ((productItem?.price * productItem?.discountPercentage) / 100).toFixed(2);
   return (
     <>
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Header />
       <StyledProductWrapper>
         <div>
           <StyledImg src={productItem?.thumbnail} />
@@ -55,7 +55,7 @@ const Product = ({ isDarkMode, toggleDarkMode }) => {
             </StyledStockCard>
           </StyledParagraph>
           <hr />
-            <StyledParagraph>{productItem?.description}</StyledParagraph>
+          <StyledParagraph>{productItem?.description}</StyledParagraph>
 
           {/* condition that stock is more than 0 */}
         </div>

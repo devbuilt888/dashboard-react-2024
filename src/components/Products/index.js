@@ -6,14 +6,14 @@ import SearchBar from "./SearchBar";
 import DataTable from "react-data-table-component";
 import ProductsHtmlTable from "../ProductsHtmlTable";
 import ProductsDataTable from "../ProductsDataTable";
-import { StyledTitleProducts, StyledCardContainer } from "./Products.styled";
+import { StyledTitleProducts, StyledCardContainer, StyledHtmlTable } from "./Products.styled";
 import { useNavigate } from "react-router-dom";
 import SearchSuggestions from "./SearchSuggestions";
 import Pagination from "../Pagination";
 import loader from "../../Assets/loader001.gif";
 import ProductCard from "../ProductCard";
 
-const Products = ({ isDarkMode, toggleDarkMode }) => {
+const Products = () => {
   const [productsData, setProductsData] = useState([]);
   const [suggestionList, setSuggestionList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
@@ -70,7 +70,7 @@ const Products = ({ isDarkMode, toggleDarkMode }) => {
 
   return (
     <>
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Header />
       <SearchBar
         productsData={productsData}
         setErrorMsg={setErrorMsg}
@@ -96,7 +96,9 @@ const Products = ({ isDarkMode, toggleDarkMode }) => {
       />
       <StyledTitleProducts>Products HTML Table</StyledTitleProducts>
       {!productsLoading ? (
-        <ProductsHtmlTable productsData={productsData} />
+        <StyledHtmlTable>
+          <ProductsHtmlTable productsData={productsData} />
+        </StyledHtmlTable>
       ) : (
         <img src={loader}></img>
       )}

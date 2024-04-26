@@ -3,11 +3,12 @@ import Header from "../Header";
 import WidgetWrapper from "../WidgetWrapper";
 import ChartWrapper from "../ChartWrapper";
 import Footer from "../Footer";
+import { StyledHtmlTable } from "./Home.styled";
 
-const Home = ({ isDarkMode, toggleDarkMode }) => {
+const Home = () => {
   return (
     <div>
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Header />
       <WidgetWrapper />
       <ChartWrapper />
       <Footer />

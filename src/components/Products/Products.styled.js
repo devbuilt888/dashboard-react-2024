@@ -6,8 +6,14 @@ export const StyledTitleProducts = styled.h1`
 `;
 
 export const StyledCardContainer = styled.div`
-display:flex;
-justify-content:space-evenly;
-flex-wrap:wrap;
-
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+export const StyledHtmlTable = styled.section`
+  font-size: 24px;
+  margin-left: 20%;
+  width: 40%;
+  background: #000;
+  padding: 30px;
 `;

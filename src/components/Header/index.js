@@ -1,8 +1,11 @@
-import react from "react";
+import react, { useContext } from "react";
+import { ThemeContext } from "../../App";
 import { StyledHeader, StyledUl, StyledCategory } from "./Header.styled";
 import { Link } from "react-router-dom";
 
-const Header = ({ isDarkMode, toggleDarkMode }) => {
+const Header = () => {
+  const contextData = useContext(ThemeContext);
+
   return (
     <StyledHeader>
       <StyledUl>
@@ -12,10 +15,10 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
         <StyledCategory>
           <button
             onClick={() => {
-              toggleDarkMode();
+              contextData.toggleDarkMode();
             }}
           >
-            Mode:  {isDarkMode ? "Dark " : "Light "}
+            Mode: {contextData.isDarkMode ? "Dark " : "Light "}
           </button>
         </StyledCategory>
       </StyledUl>

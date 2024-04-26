@@ -1,6 +1,11 @@
 import react from "react";
 import { Link } from "react-router-dom";
-import {StyledWidget} from './Widget.styled';
+import {
+  StyledWidget,
+  StyledWidgetWrap,
+  StyledCountText,
+  StyledCountSection,
+} from "./Widget.styled";
 
 const Widget = ({ color, textToDisplay, count, link }) => {
   //array destructuring
@@ -16,10 +21,14 @@ const Widget = ({ color, textToDisplay, count, link }) => {
   };
   return (
     <StyledWidget className="widget" style={widgetStyles}>
-      <i className="fa-solid fa-bucket" />
-      <Link to={link}>{textToDisplay}</Link>
-      <br />
-      {count}
+      <StyledWidgetWrap>
+        <i className="fa-solid fa-bucket" />
+        <Link to={link}>{textToDisplay}</Link>
+        <br />
+        <StyledCountSection>
+          <StyledCountText>{count}</StyledCountText>
+        </StyledCountSection>
+      </StyledWidgetWrap>
     </StyledWidget>
   );
 };

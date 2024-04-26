@@ -1,8 +1,7 @@
 import react, { useEffect, useState } from "react";
 import axios from "axios";
 import Widget from "../Widget";
-import ProductsHtmlTable from "../ProductsHtmlTable";
-import {StyledWidgetWrapper} from './WidgetWrapper.styled';
+import { StyledWidgetWrapper} from "./WidgetWrapper.styled";
 
 const WidgetWrapper = () => {
   //   let getWidget = () => {
@@ -128,49 +127,49 @@ const WidgetWrapper = () => {
   //if this number is under 10 return false, else return true
 
   return (
-    <StyledWidgetWrapper>
-      {/* {getWidget()} */}
-      <Widget
-        key="1"
-        color="#2E6DFF"
-        textToDisplay="Products"
-        count={products.length}
-        link="/products"
-      />
-
-      {usersAgeCheck() && (
+    <>
+      <StyledWidgetWrapper>
+        {/* {getWidget()} */}
         <Widget
-          key="2"
-          color="#FF7A00"
-          textToDisplay="Users"
-          count={users.length}
+          key="1"
+          color="#2E6DFF"
+          textToDisplay="Products"
+          count={products.length}
           link="/products"
         />
-      )}
 
-      {/* {getCategories() && ( */}
-      {getCategories2() && (
+        {usersAgeCheck() && (
+          <Widget
+            key="2"
+            color="#FF7A00"
+            textToDisplay="Users"
+            count={users.length}
+            link="/products"
+          />
+        )}
+
+        {/* {getCategories() && ( */}
+        {getCategories2() && (
+          <Widget
+            key="3"
+            color="#378839"
+            textToDisplay="Categories"
+            count={Object.keys(getCategories2()).length}
+            link="/categories"
+
+            // count={getCategories().size}
+          />
+        )}
+
         <Widget
-          key="3"
-          color="#378839"
-          textToDisplay="Categories"
-          count={Object.keys(getCategories2()).length}
-          link="/categories"
-
-          // count={getCategories().size}
+          key="4"
+          color="yellow"
+          textToDisplay="Alerts"
+          count=""
+          link="/alerts"
         />
-      )}
-
-      <Widget
-        key="4"
-        color="yellow"
-        textToDisplay="Alerts"
-        count=""
-        link="/alerts"
-      />
-      <br />
-      <ProductsHtmlTable productsData={products} />
-    </StyledWidgetWrapper>
+      </StyledWidgetWrapper>
+    </>
   );
 };
 
