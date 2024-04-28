@@ -39,7 +39,7 @@ const ChartWrapper = () => {
   return (
     <StyledChartWrapper className="chartWrapper">
       <LineChart chartOneData={chartOneData} />
-      <DonutChart />
+      <DonutChart donutData={chartOneData} />
     </StyledChartWrapper>
   );
 };

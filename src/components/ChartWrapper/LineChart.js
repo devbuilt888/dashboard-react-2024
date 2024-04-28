@@ -23,15 +23,7 @@ ChartJS.register(
 );
 
 const LineChart = ({ chartOneData }) => {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  const labels = ["10-19", "20-29", "30-39", "40-49", "50-59"];
 
   const data = {
     labels,
@@ -54,10 +46,9 @@ const LineChart = ({ chartOneData }) => {
   return (
     <>
       <StyledChartContainer>
-        <StyledHeader>Users by age group</StyledHeader>
+        <StyledHeader>Users by age group - Line Graph</StyledHeader>
         <Line data={data} />
       </StyledChartContainer>
-
     </>
   );
 };

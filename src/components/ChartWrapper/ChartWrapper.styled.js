@@ -9,6 +9,7 @@ export const StyledChartWrapper = styled.section`
 
 export const StyledChartContainer = styled.section`
   width: 50%;
+  margin:0 5%;
 `;
 
 export const StyledHeader = styled.h1`
