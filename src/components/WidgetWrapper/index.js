@@ -163,7 +163,7 @@ const WidgetWrapper = () => {
 
         <Widget
           key="4"
-          color="yellow"
+          color="#809"
           textToDisplay="Alerts"
           count=""
           link="/alerts"

@@ -1,67 +1,21 @@
 import react, { useEffect, useState } from "react";
-import {
-  StyledChartWrapper,
-  StyledChartContainer,
-} from "./ChartWrapper.styled";
+import { StyledChartWrapper, StyledHeader } from "./ChartWrapper.styled";
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
 import axios from "axios";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import LineChart from "./LineChart";
+import DonutChart from "./DonutChart";
 
 const ChartWrapper = () => {
   const [users, setUsers] = useState([]);
   const [chartOneData, setChartOneData] = useState([]);
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Real dataset",
-        data: chartOneData,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      // {
-      //   label: "Fake dataset",
-      //   data: [10, 20, 15, 5, 20],
-      //   borderColor: "rgb(53, 162, 235)",
-      //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-      // },
-    ],
-  };
 
   useEffect(() => {
     const fetchUsers = async () => {
       const usersResponse = await axios.get(`https://dummyjson.com/users`);
       const userArr = usersResponse.data.users;
+      setUsers(userArr);
+      // console.log(userArr);
 
       const finalArr = [0, 0, 0, 0, 0];
       for (let i = 0; i < userArr.length; i++) {
@@ -84,10 +38,8 @@ const ChartWrapper = () => {
 
   return (
     <StyledChartWrapper className="chartWrapper">
-      <Line data={data} />
-      <StyledChartContainer>
-        <div>chart</div>
-      </StyledChartContainer>
+      <LineChart chartOneData={chartOneData} />
+      <DonutChart />
     </StyledChartWrapper>
   );
 };
