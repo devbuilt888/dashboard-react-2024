@@ -46,6 +46,9 @@ const DonutChart = ({ donutData }) => {
       <section>goodbye</section>
       <DonutChartWrap>
         <div>Donut component</div>
+
+        <div>this is a merge conflict</div>
+
         <Doughnut data={data} labels={labels} />
       </DonutChartWrap>
     </StyledChartContainer>
