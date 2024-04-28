@@ -42,6 +42,7 @@ const DonutChart = ({ donutData }) => {
     <StyledChartContainer className="chartWrapper">
       <StyledHeader>Users by age group - Donut Graph</StyledHeader>
       <div>hellow</div>
+      <div>hellowagain</div>
       <section>goodbye</section>
       <DonutChartWrap>
         <div>Donut component</div>
