@@ -1,6 +1,6 @@
 import react from "react";
 
-import { StyledChartContainer } from "./ChartWrapper.styled";
+import { StyledChartContainer, StyledHeader } from "./ChartWrapper.styled";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,10 +28,10 @@ const BarChart = () => {
       legend: {
         position: "top",
       },
-      title: {
-        display: true,
-        text: "Chart.js Bar Chart",
-      },
+      // title: {
+      //   display: true,
+      //   text: "Chart.js Bar Chart",
+      // },
     },
   };
 
@@ -63,6 +63,8 @@ const BarChart = () => {
 
   return (
     <StyledChartContainer>
+      <StyledHeader>Random data - Bar Graph</StyledHeader>
+
       <Bar options={options} data={data} />
     </StyledChartContainer>
   );
