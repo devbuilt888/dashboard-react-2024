@@ -5,6 +5,7 @@ import axios from "axios";
 
 import LineChart from "./LineChart";
 import DonutChart from "./DonutChart";
+import BarChart from "./BarChart";
 
 const ChartWrapper = () => {
   const [users, setUsers] = useState([]);
@@ -37,10 +38,15 @@ const ChartWrapper = () => {
   }, []);
 
   return (
-    <StyledChartWrapper className="chartWrapper">
-      <LineChart chartOneData={chartOneData} />
-      <DonutChart donutData={chartOneData} />
-    </StyledChartWrapper>
+    <>
+      <StyledChartWrapper className="chartWrapper">
+        <LineChart chartOneData={chartOneData} />
+        <DonutChart donutData={chartOneData} />
+      </StyledChartWrapper>
+      <StyledChartWrapper>
+        <BarChart />
+      </StyledChartWrapper>
+    </>
   );
 };
 
