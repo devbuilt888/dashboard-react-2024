@@ -56,7 +56,7 @@ const BarChart = () => {
       {
         label: "Dataset 2",
         data: labels.map(() => Math.random()),
-        backgroundColor: "rgba(255, 159, 64, 0.2)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
       },
     ],
   };
